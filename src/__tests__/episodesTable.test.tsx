@@ -1,8 +1,8 @@
 import { render, screen } from "@testing-library/react";
-import { EpisodesTable } from "../components/EpisodesTable/episodesTable";
-import * as SelectedCharactersStore from "../store/selectedCharacters";
+import * as SelectedCharactersStore from "@/pages/Home/store/selectedCharacters";
+import { EpisodesTable } from "@/pages/Home/components/EpisodesTable/episodesTable";
 
-jest.mock("../store/selectedCharacters");
+jest.mock("../pages/Home/store/selectedCharacters");
 
 const mockedContext =
   SelectedCharactersStore.useSelectedCharactersContext as jest.Mock;
