@@ -1,9 +1,9 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { CardContainer } from "./cardContainer";
-import { useSelectedCharactersContext } from "../../store/selectedCharacters";
-import { Character } from "../../models/characters.model";
+import { Character } from "../models/characters.model";
+import { useSelectedCharactersContext } from "../store/selectedCharacters";
+import { CardContainer } from "../components/CardComponent/cardContainer";
 
-jest.mock("../../store/selectedCharacters");
+jest.mock("../store/selectedCharacters");
 
 const mockCharacter: Character = {
   id: 1,

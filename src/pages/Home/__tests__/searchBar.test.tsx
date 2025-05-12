@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { SearchBar } from "./searchBar";
+import { SearchBar } from "../components/SearchBar/searchBar";
 
 describe("SearchBar", () => {
   it("renders input and select elements", () => {
