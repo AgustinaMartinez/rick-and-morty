@@ -1,4 +1,4 @@
-import { HomePage } from "@/pages/Home/page";
+import HomePage from "@/pages/Home/page";
 import { Container } from "../common/components/Container/container";
 import { fetchCharacters } from "@/services/characters.service";
 

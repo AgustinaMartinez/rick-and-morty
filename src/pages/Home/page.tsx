@@ -9,11 +9,7 @@ import { CardContainer } from "@/components/CardComponent/cardContainer";
 import { Characters } from "@/models/characters.model";
 import { fetchCharacters } from "@/services/characters.service";
 
-export const HomePage = ({
-  initialCharacters,
-}: {
-  initialCharacters: Characters;
-}) => {
+function HomePage({ initialCharacters }: { initialCharacters: Characters }) {
   const [page, setPage] = useState<number>(1);
   const [characters, setCharacters] = useState<Characters>(initialCharacters);
   const [error, setError] = useState<string>("");
@@ -67,4 +63,6 @@ export const HomePage = ({
       </SelectedCharactersProvider>
     </main>
   );
-};
+}
+
+export default HomePage;
