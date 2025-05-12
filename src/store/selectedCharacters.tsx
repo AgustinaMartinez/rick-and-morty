@@ -1,5 +1,5 @@
 import { createContext, useContext, ReactNode } from "react";
-import { useSelectedCharacters } from "../hooks/useSelectedCharacters";
+import { useSelectedCharacters } from "@/hooks/useSelectedCharacters";
 
 const SelectedCharactersContext = createContext<ReturnType<
   typeof useSelectedCharacters

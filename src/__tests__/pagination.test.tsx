@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Characters } from "@/pages/Home/models/characters.model";
-import { Pagination } from "@/pages/Home/components/Pagination/pagination";
+import { Characters } from "@/models/characters.model";
+import { Pagination } from "@/components/Pagination/pagination";
 
 describe("Pagination", () => {
   const mockResponse: Characters = {

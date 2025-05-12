@@ -1,6 +1,6 @@
-import { HomePage } from "@/pages/Home/home";
-import { Container } from "./common/components/Container/container";
-import { fetchCharacters } from "@/pages/Home/services/characters.service";
+import { HomePage } from "@/pages/Home/page";
+import { Container } from "../common/components/Container/container";
+import { fetchCharacters } from "@/services/characters.service";
 
 export default async function Home() {
   const characters = await fetchCharacters(1);

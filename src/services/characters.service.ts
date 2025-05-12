@@ -1,4 +1,4 @@
-import { Character, Characters } from "../models/characters.model";
+import { Character, Characters } from "@/models/characters.model";
 
 export const fetchCharacters = async (page: number): Promise<Characters> => {
   try {

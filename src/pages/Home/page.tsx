@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Header } from "./components/Header/header";
-import { Pagination } from "./components/Pagination/pagination";
-import { EpisodesTable } from "./components/EpisodesTable/episodesTable";
-import { SelectedCharactersProvider } from "./store/selectedCharacters";
-import { CardContainer } from "./components/CardComponent/cardContainer";
-import { Characters } from "./models/characters.model";
-import { fetchCharacters } from "./services/characters.service";
+import { Header } from "@/components/Header/header";
+import { Pagination } from "@/components/Pagination/pagination";
+import { EpisodesTable } from "@/components/EpisodesTable/episodesTable";
+import { SelectedCharactersProvider } from "@/store/selectedCharacters";
+import { CardContainer } from "@/components/CardComponent/cardContainer";
+import { Characters } from "@/models/characters.model";
+import { fetchCharacters } from "@/services/characters.service";
 
 export const HomePage = ({
   initialCharacters,

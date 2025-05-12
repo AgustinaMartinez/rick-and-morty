@@ -48,7 +48,7 @@ export function useSelectedCharacters() {
     for (const each of selection) {
       const { characterId } = each;
       const character = await fetchCharacter(characterId);
-      const episodeUrls = character.episode;
+      const episodeUrls = character.episode as string[];
       const episodeIds = episodeUrls.map((url) => url.split("/").pop()).filter(Boolean) as string[];
       const episodes = await fetchEpisodes(episodeIds);      
       episodeData[characterId] = Array.isArray(episodes) ? episodes : [episodes];

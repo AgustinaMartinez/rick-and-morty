@@ -1,4 +1,4 @@
-import { Episode } from "../models/episodes.model";
+import { Episode } from "@/models/episodes.model";
 
 export const fetchEpisodes = async (ids: string[]): Promise<Episode[]> => {
   try {

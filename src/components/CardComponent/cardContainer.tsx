@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Loading } from "@/app/common/components/Loading/loading";
+import { Loading } from "@/common/components/Loading/loading";
 import { SearchBar } from "../SearchBar/searchBar";
 import { Card } from "../Card/card";
 import { useSelectedCharactersContext } from "../../store/selectedCharacters";

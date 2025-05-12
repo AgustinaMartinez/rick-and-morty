@@ -2,7 +2,7 @@ import localFont from "next/font/local";
 import { useSelectedCharactersContext } from "../../store/selectedCharacters";
 
 const schwifty = localFont({
-  src: "../../../../../public/fonts/get_schwifty.ttf",
+  src: "../../../public/fonts/get_schwifty.ttf",
 });
 
 export const EpisodesTable = () => {
