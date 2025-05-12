@@ -1,13 +1,24 @@
 import localFont from "next/font/local";
 import { useSelectedCharactersContext } from "../../store/selectedCharacters";
+import { useEffect, useRef } from "react";
 
 const schwifty = localFont({
   src: "../../../public/fonts/get_schwifty.ttf",
 });
 
 export const EpisodesTable = () => {
+  const episodesRef = useRef<HTMLDivElement | null>(null);
   const { selected, episodesByCharacter, sharedEpisodes } =
     useSelectedCharactersContext();
+
+  useEffect(() => {
+    if (selected.length > 0 && episodesRef.current) {
+      episodesRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [selected]);
 
   const SharedEpisodes = () => (
     <>
@@ -59,9 +70,7 @@ export const EpisodesTable = () => {
   };
 
   const Episodes = () => {
-    const singleTable = selected.length === 1;
-
-    if (singleTable)
+    if (selected.length === 1)
       return (
         <div className="m-4 rounded-lg bg-[var(--dark-green)] opacity-80">
           <EpisodesByCharacter selection={0} />
@@ -79,7 +88,10 @@ export const EpisodesTable = () => {
   };
 
   return selected.length ? (
-    <div className="mt-4 flex flex-col gap-8 max-w-[1400] mx-auto">
+    <div
+      ref={episodesRef}
+      className="mt-4 flex flex-col gap-8 max-w-[1400] mx-auto"
+    >
       <Episodes />
     </div>
   ) : null;

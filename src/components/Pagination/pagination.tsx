@@ -1,3 +1,5 @@
+import { LeftArrowIcon } from "../../../public/icons/left-arrow";
+import { RightArrowIcon } from "../../../public/icons/right-arrow";
 import { Characters } from "../../models/characters.model";
 
 interface PaginationProps {
@@ -16,6 +18,7 @@ export const Pagination = ({
   return (
     <div className="flex items-center justify-center gap-6 mt-10">
       <button
+        aria-label="previous page"
         onClick={onClickPrevPage}
         disabled={!response?.info?.prev}
         className={`w-14 h-14 rounded-full flex items-center justify-center text-[var(--dark-blue)] text-xl transition-all duration-300
@@ -25,7 +28,7 @@ export const Pagination = ({
             : "bg-[var(--light-blue)] opacity-30 cursor-not-allowed"
         }`}
       >
-        ◀
+        <LeftArrowIcon />
       </button>
 
       <span className="text-2xl font-bold text-[var(--green)] drop-shadow-[0_0_6px_var(--green)]">
@@ -35,6 +38,7 @@ export const Pagination = ({
       </span>
 
       <button
+        aria-label="next page"
         onClick={onClickNextPage}
         disabled={!response?.info?.next}
         className={`w-14 h-14 rounded-full flex items-center justify-center text-[var(--dark-blue)] text-xl transition-all duration-300
@@ -44,7 +48,7 @@ export const Pagination = ({
             : "bg-[var(--light-green)] opacity-30 cursor-not-allowed"
         }`}
       >
-        ▶
+        <RightArrowIcon />
       </button>
     </div>
   );

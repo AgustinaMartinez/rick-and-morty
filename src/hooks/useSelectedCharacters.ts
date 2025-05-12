@@ -4,23 +4,28 @@ import { fetchCharacter } from "../services/characters.service";
 import { fetchEpisodes } from "../services/episodes.service";
 
 const STORAGE_KEY = "selectedCharacters";
+const PAGE_KEY = "currentPage";
 
 export function useSelectedCharacters() {
-  const [selected, setSelected] = useState<{ characterId: number; column: number }[]>([]);
+  const [selected, setSelected] = useState<{ characterId: number; column: number; page: number }[]>([]);
   const [episodesByCharacter, setEpisodesByCharacter] = useState<Record<number, Episode[]>>({});
   const [sharedEpisodes, setSharedEpisodes] = useState<Episode[]>([]);
   const [hasLoadedFromStorage, setHasLoadedFromStorage] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
+    const storedPage = localStorage.getItem(PAGE_KEY);
+
+    if (storedPage) setPage(parseInt(storedPage, 10));
+
     if (stored) {
       const parsedData = JSON.parse(stored);
       setSelected(parsedData);
-      setHasLoadedFromStorage(true);
       if (parsedData.length > 0) getEpisodes(parsedData);
-    } else {
-      setHasLoadedFromStorage(true);
     }
+
+    setHasLoadedFromStorage(true);
   }, []);
   
 
@@ -28,17 +33,19 @@ export function useSelectedCharacters() {
     if (!hasLoadedFromStorage) return;
   
     localStorage.setItem(STORAGE_KEY, JSON.stringify(selected));
+    localStorage.setItem(PAGE_KEY, page.toString());
+
     if (selected.length > 0) getEpisodes();
-  }, [selected, hasLoadedFromStorage]);
+  }, [selected, hasLoadedFromStorage, page]);
   
 
   const selectCharacter = (id: number, column: number) => {
     if (selected.some((item) => item.characterId === id)) {
       setSelected((prev) => prev.filter((item) => item.characterId !== id));
     } else if (selected.length < 2) {
-      setSelected((prev) => [...prev, { characterId: id, column }]);
+      setSelected((prev) => [...prev, { characterId: id, column, page }]);
     } else {
-      setSelected(([, second]) => [second, { characterId: id, column }]);
+      setSelected(([, second]) => [second, { characterId: id, column, page }]);
     }
   };
 
@@ -53,7 +60,7 @@ export function useSelectedCharacters() {
       const episodes = await fetchEpisodes(episodeIds);      
       episodeData[characterId] = Array.isArray(episodes) ? episodes : [episodes];
     }
-    
+
     setEpisodesByCharacter(episodeData);
 
     if (selected.length === 2) {
@@ -73,5 +80,7 @@ export function useSelectedCharacters() {
     selectCharacter,
     episodesByCharacter,
     sharedEpisodes,
+    page,
+    setPage,
   };
 }

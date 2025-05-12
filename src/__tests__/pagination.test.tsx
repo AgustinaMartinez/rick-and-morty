@@ -42,7 +42,7 @@ describe("Pagination", () => {
       />
     );
 
-    const prevButton = screen.getByText("◀");
+    const prevButton = screen.getByLabelText("previous page");
     expect(prevButton).toBeDisabled();
   });
 
@@ -61,7 +61,7 @@ describe("Pagination", () => {
       />
     );
 
-    const nextButton = screen.getByText("▶");
+    const nextButton = screen.getByLabelText("next page");
     expect(nextButton).toBeDisabled();
   });
 
@@ -78,8 +78,8 @@ describe("Pagination", () => {
       />
     );
 
-    fireEvent.click(screen.getByText("◀"));
-    fireEvent.click(screen.getByText("▶"));
+    fireEvent.click(screen.getByLabelText("previous page"));
+    fireEvent.click(screen.getByLabelText("next page"));
 
     expect(handlePrev).toHaveBeenCalledTimes(1);
     expect(handleNext).toHaveBeenCalledTimes(1);
